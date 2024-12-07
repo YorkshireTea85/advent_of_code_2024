@@ -4,8 +4,10 @@ with open("Day5/Input.txt", 'r') as file:
     lines = file.readlines()
 
     page_num_sum = 0
-    order_rules = []
-    order_validation = {}
+    
+   
+    order_rules = []  # Variable to hold list or rules (tuples)
+    order_validation = {}  # Dictionary to hold page number keys and their respective preceding and suceeding pages
     updates = []
 
     # Function to check if update is correctly ordered
@@ -42,13 +44,17 @@ with open("Day5/Input.txt", 'r') as file:
         else:
             order_validation[rule[1]]["preceding_pages"].append(rule[0])
 
+    # Loop through all updates
     for update in updates:
-        
+
+        # Skip update if correctly ordered
         if check_update_order(update, order_rules) == True:
             continue
-        
+
+        # Variable to track if current update state is correct
         update_check = False
 
+        # Apply rules to update pages until order is correct
         while update_check == False:
             
             for page in update:
@@ -69,20 +75,24 @@ with open("Day5/Input.txt", 'r') as file:
                     elif update.index(page2) > page_index:
                         current_succeeding_pages.append(page2)
     
+                # Move incorrectly placed succeeding pages to proceed current page in the update order
                 for cur_suc_page in current_succeeding_pages:
                     suc_page_index = update.index(cur_suc_page)
                     if cur_suc_page in valid_preceding_pages:
                         removed_page = update.pop(suc_page_index)
                         update.insert(page_index,removed_page)
 
+                # Move incorrectly placed preceding pages to succeed current page in the update order
                 for cur_prec_page in current_preceding_pages:
                     prec_page_index = update.index(cur_prec_page)
                     if cur_prec_page in valid_succeeding_pages:
                         removed_page = update.pop(prec_page_index)
                         update.insert(page_index+1,removed_page)
 
+                # Check if update order is correct
                 update_check = check_update_order(update, order_rules)
                 
+                # Add middle page number to running total
                 if update_check:
                     page_num_sum += int(update[len(update)//2])
                     break
