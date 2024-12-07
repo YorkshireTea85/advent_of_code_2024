@@ -3,7 +3,7 @@ import re
 result = 0
 
 # Open input file
-with open("Day3/Day_3-2_Input.txt", 'r') as file:
+with open("Day3/Input.txt", 'r') as file:
     
     valid_commands = []
 

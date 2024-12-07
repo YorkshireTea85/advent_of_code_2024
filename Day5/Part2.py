@@ -1,7 +1,31 @@
-
+xmas_count = 0
 
 # Open input file
-with open("Day5/Day_5-1_Test_Input.txt", 'r') as file:
+with open("Day5/Test_Input.txt", 'r') as file:
+    
+
+    lines = file.readlines()
+
+    grid = [[letter for letter in line.strip()] for line in lines]
+
+    
+    for i, row in enumerate(grid):
+        for j, letter in enumerate(row):
+            if letter == "A":
+                # Ensure the letter is not on the boundary of the grid
+                if (i <= 0 or i >= len(grid)-1) or (j <= 0 or j >= len(row)-1):
+                    pass
+                else:
+                    tl_to_br = f"{grid[i-1][j-1]}{grid[i][j]}{grid[i+1][j+1]}"
+                    tr_to_bl = f"{grid[i-1][j+1]}{grid[i][j]}{grid[i+1][j-1]}"
+
+                    if (tl_to_br == "MAS" or tl_to_br == "SAM") and (tr_to_bl == "MAS" or tr_to_bl == "SAM"):
+                        xmas_count += 1
+
+    print(xmas_count)
+        
+del file# Open input file
+with open("Day5/Input.txt", 'r') as file:
     
 
     lines = file.readlines()
@@ -29,8 +53,6 @@ with open("Day5/Day_5-1_Test_Input.txt", 'r') as file:
                         removed_page = update.pop(page_left_index)
                         update.insert(page_right_index, removed_page)
                         is_correctly_ordered = False
-        print(update)
-        print(update[len(update)//2])
 
         if is_correctly_ordered == False:  
             page_num_sum += int(update[len(update)//2])

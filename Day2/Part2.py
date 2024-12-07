@@ -27,7 +27,7 @@ def report_check(report):
                 
 
 # Open input file
-with open("Day2/Day_2-2_Input.txt", 'r') as file:
+with open("Day2/Input.txt", 'r') as file:
 
     # Create list of reports (as Strings) with whitespace and newlines removed
     reports = [[int(level) for level in line.rstrip().split()] for line in file.readlines()]
@@ -42,19 +42,13 @@ with open("Day2/Day_2-2_Input.txt", 'r') as file:
         if is_safe == False:
             validation_log = []
             for i in range(len(report)):
-                print(report)
                 removed_value = report.pop(i)
-                print(report)
                 validation_log.append(report_check(report))
                 report.insert(i, removed_value)
-                print("")
             
-            print(validation_log)
             if validation_log.count(True) >= 1:
                 is_safe = True
         
-
-        print(index, report, is_safe)
         if is_safe:
             safe_report_count += 1
 

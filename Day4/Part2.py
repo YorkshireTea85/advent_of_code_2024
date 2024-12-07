@@ -1,7 +1,7 @@
 xmas_count = 0
 
 # Open input file
-with open("Day4/Day_4-1_Input.txt", 'r') as file:
+with open("Day4/Input.txt", 'r') as file:
     
 
     lines = file.readlines()

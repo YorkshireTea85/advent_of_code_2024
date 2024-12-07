@@ -2,7 +2,7 @@ left_list = []
 right_list = []
 similarity_score = 0
 
-with open("Day_1-2_Input.txt", 'r') as file:
+with open("Day1/Input.txt", 'r') as file:
     lines = file.readlines()
     for line in lines:
         line_split = line.split()

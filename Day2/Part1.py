@@ -1,7 +1,7 @@
 safe_report_count = 0
 
 # Open input file
-with open("Day2/Day_2-1_Input.txt", 'r') as file:
+with open("Day2/Input.txt", 'r') as file:
 
     # Create list of reports (as Strings) with whitespace and newlines removed
     reports = [[int(level) for level in line.rstrip().split()] for line in file.readlines()]
